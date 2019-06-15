@@ -20,8 +20,9 @@ public class RestaurantsDataValidation {
     public boolean validateRestaurantSearchQueryData(Response response) {
         List<Map> restaurants = response.jsonPath().get("restaurants.restaurant");
         boolean flag = false;
+
         for (Map restaurant : restaurants) {
-            logger.info(restaurant.get("name") + "\n" + restaurant.get("cuisines"));
+            logger.info("\n"+restaurant.get("name") + "\n" + restaurant.get("cuisines"));
             flag = restaurant.get("name").toString().toLowerCase().contains("kerala") || restaurant.get("cuisines").toString().toLowerCase().contains("kerala");
         }
         return flag;

@@ -10,7 +10,6 @@ import utils.ApiConfig;
 import utils.ApiUtils;
 import utils.ResponseCode;
 
-import static io.restassured.RestAssured.given;
 
 public class CuisinesDetails implements ResponseCode {
 

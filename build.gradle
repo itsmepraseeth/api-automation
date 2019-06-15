@@ -16,9 +16,9 @@ defaultTasks 'clean'
 test {
     useTestNG(){
         useDefaultListeners = true
+        def manifestFile=file("environment.txt")
+        manifestFile.write(envType)
         suites 'src/test/resources/testSuites/testFile.xml'
-//        def manifestFile=file("environment.txt")
-//        manifestFile.write(envType)
     }
 }
 
