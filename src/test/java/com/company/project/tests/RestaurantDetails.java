@@ -1,5 +1,6 @@
 package com.company.project.tests;
 
+import com.company.project.validations.RestaurantsDataValidation;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public class RestaurantDetails extends ApiUtils implements ResponseCode {
      */
     @Test
     void searchRestaurantsWithQuery(){
-        logger.info("testing");
+        logger.info("Fetching data for restaurants with search query");
         RestAssured.baseURI= ApiConfig.getHost();
         String uri=String.format(ApiConfig.getRestaurantSearchQueryApi(),searchQuery);
         Response response=ApiUtils.getApiResponse(OK,uri);

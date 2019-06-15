@@ -1,6 +1,6 @@
 package base;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class BaseTest {
 
-    @BeforeTest
+    @BeforeMethod
     private void testSetUp(){
         System.setProperty("envType",getTextFromFile("environment.txt"));
         System.out.println("test setup--  "+System.getProperty("envType"));

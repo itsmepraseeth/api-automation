@@ -1,10 +1,10 @@
 package com.company.project.tests;
 
+import com.company.project.validations.CuisinesDataVaildation;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.ApiConfig;
 import utils.ApiUtils;
@@ -16,6 +16,7 @@ public class CuisinesDetails implements ResponseCode {
 
     private static final Logger logger= LoggerFactory.getLogger("Post API Test Class");
 
+    CuisinesDataVaildation dataVaildation= new CuisinesDataVaildation();
     int cityId=4;
 
     @Test
@@ -23,6 +24,6 @@ public class CuisinesDetails implements ResponseCode {
         RestAssured.baseURI= ApiConfig.getHost();
         String uri=String.format(ApiConfig.getCityCuisinesDetails(),cityId);
         Response response= ApiUtils.getApiResponse(OK,uri);
-
+        dataVaildation.validateCuisinesDataByCity(response);
     }
 }
