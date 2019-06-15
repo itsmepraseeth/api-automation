@@ -17,9 +17,8 @@ test {
     useTestNG(){
         useDefaultListeners = true
         suites 'src/test/resources/testSuites/testFile.xml'
-//        def manifestFile=file("environment.txt")
-//        manifestFile.write(envType)
-//        includeGroups  "sanity"
+        def manifestFile=file("environment.txt")
+        manifestFile.write(envType)
     }
 }
 

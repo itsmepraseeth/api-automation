@@ -19,10 +19,8 @@ public class ApiUtils {
 
     public static Response getApiResponse(final int responseCode, final String url) {
         logger.info("GET " + url);
-        final Response res = get(url);
-        logger.info("GET " + url + " Expected Response " + responseCode
-                + " Observed Response " + res.getStatusCode());
-        assertEquals(res.getStatusCode(), responseCode);
+        Response res=given().header("user-key",ApiConfig.getApiKey()).get(url).then().statusCode(responseCode).extract().response();
+        logger.info(" Expected Response " + responseCode + " Observed Response " + res.getStatusCode()+"\n"+res.asString());
         return res;
     }
 

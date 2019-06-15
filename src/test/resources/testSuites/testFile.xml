@@ -2,7 +2,7 @@
 <suite name="api automation">
     <test name="testngTest">
         <classes>
-            <class name="com.company.project.tests.PostApiTest" />
+            <class name="com.company.project.tests.CuisinesDetails" />
         </classes>
     </test>
 </suite>
