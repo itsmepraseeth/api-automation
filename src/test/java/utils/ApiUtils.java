@@ -2,6 +2,9 @@ package utils;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +24,19 @@ public class ApiUtils {
         Response res=given().header("user-key",ApiConfig.getApiKey()).get(url).then().statusCode(responseCode).extract().response();
         logger.info(" Expected Response " + responseCode + " Observed Response " + res.getStatusCode()+"\n"+res.asString());
         return res;
+    }
+
+    public static boolean isJSONValid(String test) {
+        try {
+            new JSONObject(test);
+        } catch (JSONException ex) {
+            try {
+                new JSONArray(test);
+            } catch (JSONException ex1) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static Response postWithoutRequestBody(int responseCode, String url) {

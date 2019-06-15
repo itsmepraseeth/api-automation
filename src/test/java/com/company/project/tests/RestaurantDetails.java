@@ -16,11 +16,12 @@ import utils.ResponseCode;
  * This class is used to fetch data related to restaurants
  */
 
-public class RestaurantDetails extends ApiUtils implements ResponseCode {
+public class RestaurantDetails extends BaseTest implements ResponseCode {
+
+    private static final Logger logger= LoggerFactory.getLogger("Restaurant details");
 
     RestaurantsDataValidation dataValidation=new RestaurantsDataValidation();
 
-    private static final Logger logger= LoggerFactory.getLogger("Restaurant details");
     String searchQuery="kerala";
 
     /**
@@ -32,6 +33,6 @@ public class RestaurantDetails extends ApiUtils implements ResponseCode {
         RestAssured.baseURI= ApiConfig.getHost();
         String uri=String.format(ApiConfig.getRestaurantSearchQueryApi(),searchQuery);
         Response response=ApiUtils.getApiResponse(OK,uri);
-        Assert.assertTrue(dataValidation.validateRestaurantSearchQueryData(response),"Search query results for restaurants have been validated");
+        Assert.assertTrue(dataValidation.validateRestaurantSearchQueryData(response),"Search query results for restaurants have produced invalid response");
     }
 }

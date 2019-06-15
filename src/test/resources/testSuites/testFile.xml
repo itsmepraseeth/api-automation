@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="api automation">
     <test name="testngTest">
-        <classes>
-            <class name="com.company.project.tests.RestaurantDetails" />
-        </classes>
+        <packages>
+            <package name="com.company.project.tests" />
+        </packages>
     </test>
 </suite>

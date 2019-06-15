@@ -4,6 +4,8 @@ package com.company.project.validations;
 import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import utils.ApiUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ public class RestaurantsDataValidation {
 
 
     public boolean validateRestaurantSearchQueryData(Response response) {
+        Assert.assertTrue(ApiUtils.isJSONValid(response.asString()),"The given String is not a valid JSON");
         List<Map> restaurants = response.jsonPath().get("restaurants.restaurant");
         boolean flag = false;
 

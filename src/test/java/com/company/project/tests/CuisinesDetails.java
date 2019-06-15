@@ -11,15 +11,16 @@ import utils.ApiUtils;
 import utils.ResponseCode;
 
 
-public class CuisinesDetails implements ResponseCode {
+public class CuisinesDetails extends BaseTest implements ResponseCode {
 
-    private static final Logger logger= LoggerFactory.getLogger("Post API Test Class");
+    private static final Logger logger= LoggerFactory.getLogger("Cuisines details ");
 
     CuisinesDataVaildation dataVaildation= new CuisinesDataVaildation();
     int cityId=4;
 
     @Test
     public void getCuisinesDetailsForCity(){
+        logger.info("Fetching cuisines data with respect to city ");
         RestAssured.baseURI= ApiConfig.getHost();
         String uri=String.format(ApiConfig.getCityCuisinesDetails(),cityId);
         Response response= ApiUtils.getApiResponse(OK,uri);
