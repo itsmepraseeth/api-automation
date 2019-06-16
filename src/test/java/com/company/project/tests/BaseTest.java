@@ -20,12 +20,12 @@ public class BaseTest {
      * This method will set the execution environment passed by the user to the system properties
      */
     @BeforeTest
-    private void testSetUp(){
+    public void testSetUp(){
         System.setProperty("envType",getTextFromFile("environment.txt"));
         logger.info("Provided environment- "+System.getProperty("envType"));
     }
 
-     private String getTextFromFile(String filename) {
+    private String getTextFromFile(String filename) {
         String value = null;
         BufferedReader br;
         try {

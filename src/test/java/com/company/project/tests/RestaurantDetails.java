@@ -22,7 +22,6 @@ public class RestaurantDetails extends BaseTest implements ResponseCode {
 
     RestaurantsDataValidation dataValidation=new RestaurantsDataValidation();
 
-
     /**
      * This method will fetch and validate the details of restaurants filtered with search query
      */

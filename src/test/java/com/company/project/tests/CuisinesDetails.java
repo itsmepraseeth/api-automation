@@ -18,6 +18,9 @@ public class CuisinesDetails extends BaseTest implements ResponseCode {
     CuisinesDataVaildation dataVaildation= new CuisinesDataVaildation();
     int cityId=4;
 
+    /**
+     * This method will fetch and validate the details of cuisines filtered with city id
+     */
     @Test
     public void getCuisinesDetailsForCity(){
         logger.info("Fetching cuisines data with respect to city ");

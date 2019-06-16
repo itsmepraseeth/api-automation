@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
 
 /**
  * The class is intended to have generic methods to get responses for different types of api calls
