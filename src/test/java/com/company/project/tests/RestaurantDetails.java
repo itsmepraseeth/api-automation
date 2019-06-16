@@ -22,7 +22,6 @@ public class RestaurantDetails extends BaseTest implements ResponseCode {
 
     RestaurantsDataValidation dataValidation=new RestaurantsDataValidation();
 
-    String searchQuery="kerala";
 
     /**
      * This method will fetch and validate the details of restaurants filtered with search query
@@ -31,7 +30,7 @@ public class RestaurantDetails extends BaseTest implements ResponseCode {
     void searchRestaurantsWithQuery(){
         logger.info("Fetching data for restaurants with search query");
         RestAssured.baseURI= ApiConfig.getHost();
-        String uri=String.format(ApiConfig.getRestaurantSearchQueryApi(),searchQuery);
+        String uri=String.format(ApiConfig.getRestaurantSearchQueryApi(),ApiConfig.getRestaurantSearchQuery());
         Response response=ApiUtils.getApiResponse(OK,uri);
         Assert.assertTrue(dataValidation.validateRestaurantSearchQueryData(response),"Search query results for restaurants have produced invalid response");
     }

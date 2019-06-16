@@ -19,9 +19,9 @@ public class ApiUtils {
 
     static Logger logger= LoggerFactory.getLogger("API utils- ");
 
-    public static Response getApiResponse(final int responseCode, final String url) {
-        logger.info("GET " + url);
-        Response res=given().header("user-key",ApiConfig.getApiKey()).get(url).then().statusCode(responseCode).extract().response();
+    public static Response getApiResponse(final int responseCode, final String uri) {
+        logger.info("GET " + uri);
+        Response res=given().header("user-key",ApiConfig.getApiKey()).get(uri).then().statusCode(responseCode).extract().response();
         logger.info(" Expected Response " + responseCode + " Observed Response " + res.getStatusCode()+"\n"+res.asString());
         return res;
     }
@@ -39,18 +39,18 @@ public class ApiUtils {
         return true;
     }
 
-    public static Response postWithoutRequestBody(int responseCode, String url) {
-        System.out.println("POST : \n"+RestAssured.baseURI+url);
-        Response res = given().contentType("application/json").when().post(url);
-        assertEquals(res.getStatusCode(), responseCode);
+    public static Response postWithoutRequestBody(int responseCode, String uri) {
+        System.out.println("POST : \n"+RestAssured.baseURI+uri);
+        Response res = given().contentType("application/json").when().post(uri).then().statusCode(responseCode).extract().response();
+        logger.info(" Expected Response " + responseCode + " Observed Response " + res.getStatusCode()+"\n"+res.asString());
         return res;
     }
 
-    public static Response postWithRequestBody(int responseCode, String requestBody, String url) {
-        System.out.println("POST : \n"+ RestAssured.baseURI+url);
+    public static Response postWithRequestBody(int responseCode, String requestBody, String uri) {
+        System.out.println("POST : \n"+ RestAssured.baseURI+uri);
         System.out.println("REQUEST BODY :\n"+requestBody);
-        Response res = given().contentType("application/json").and().body(requestBody).when().post(url);
-        assertEquals(res.getStatusCode(), responseCode);
+        Response res = given().contentType("application/json").and().body(requestBody).when().post(uri).then().statusCode(responseCode).extract().response();
+        logger.info(" Expected Response " + responseCode + " Observed Response " + res.getStatusCode()+"\n"+res.asString());
         return res;
     }
 

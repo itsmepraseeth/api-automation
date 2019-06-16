@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import utils.ApiConfig;
 import utils.ApiUtils;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Map;
 public class RestaurantsDataValidation {
 
     private static final Logger logger= LoggerFactory.getLogger("Restaurant data validation ");
-
+    private String restaurantSearchQuery= ApiConfig.getRestaurantSearchQuery();
 
     public boolean validateRestaurantSearchQueryData(Response response) {
         Assert.assertTrue(ApiUtils.isJSONValid(response.asString()),"The given String is not a valid JSON");
@@ -26,7 +27,7 @@ public class RestaurantsDataValidation {
 
         for (Map restaurant : restaurants) {
             logger.info("\n"+restaurant.get("name") + "\n" + restaurant.get("cuisines"));
-            flag = restaurant.get("name").toString().toLowerCase().contains("kerala") || restaurant.get("cuisines").toString().toLowerCase().contains("kerala");
+            flag = restaurant.get("name").toString().toLowerCase().contains(restaurantSearchQuery) || restaurant.get("cuisines").toString().toLowerCase().contains(restaurantSearchQuery);
         }
         return flag;
     }

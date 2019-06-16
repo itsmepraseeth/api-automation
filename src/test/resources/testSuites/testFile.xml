@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="api automation">
-    <test name="testngTest">
+    <test name="api validation">
         <packages>
             <package name="com.company.project.tests" />
         </packages>
