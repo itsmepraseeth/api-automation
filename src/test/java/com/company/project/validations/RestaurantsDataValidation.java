@@ -10,6 +10,7 @@ import utils.ApiUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * this class is used to validate the result related to restaurant details
@@ -23,12 +24,13 @@ public class RestaurantsDataValidation {
     public boolean validateRestaurantSearchQueryData(Response response) {
         Assert.assertTrue(ApiUtils.isJSONValid(response.asString()),"The given String is not a valid JSON");
         List<Map> restaurants = response.jsonPath().get("restaurants.restaurant");
-        boolean flag = false;
 
         for (Map restaurant : restaurants) {
             logger.info("\n"+restaurant.get("name") + "\n" + restaurant.get("cuisines"));
-            flag = restaurant.get("name").toString().toLowerCase().contains(restaurantSearchQuery) || restaurant.get("cuisines").toString().toLowerCase().contains(restaurantSearchQuery);
+            boolean flag = restaurant.get("name").toString().toLowerCase().contains(restaurantSearchQuery) || restaurant.get("cuisines").toString().toLowerCase().contains(restaurantSearchQuery);
+            if (!flag)
+                return false;
         }
-        return flag;
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 package com.company.project.validations;
 
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -8,9 +9,11 @@ import utils.ApiUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
- * this classs is used to validate the result related to cuisines' details
+ * this class is used to validate the result related to cuisines' details
  */
 
 public class CuisinesDataVaildation {
@@ -20,12 +23,9 @@ public class CuisinesDataVaildation {
     public boolean validateCuisinesDataByCity(Response response){
         Assert.assertTrue(ApiUtils.isJSONValid(response.asString()),"The given String is not a valid JSON");
         List<Map> cuisines = response.jsonPath().get("cuisines.cuisine");
-        boolean flag = false;
-        for (Map cuisine : cuisines) {
-            logger.info(cuisine.get("cuisine_id") + "\n" + cuisine.get("cuisine_name"));
-            flag = !cuisine.get("cuisine_id").toString().isEmpty()&& cuisine.get("cuisine_name").toString().isEmpty();
-        }
-        return flag;
+        long nullCount = cuisines.stream().filter(cuisine -> cuisine.get("cuisine_id") == null || cuisine.get("cuisine_name") == null).count();
 
+        logger.info("Null value count in cuisines data-  "+nullCount);
+        return nullCount==0;
     }
 }
