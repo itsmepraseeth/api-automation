@@ -9,8 +9,7 @@ import java.util.ResourceBundle;
 
 public class ApiConfig {
 
-    private static ResourceBundle resourceBundle=ResourceBundle.getBundle("configs/env1");
-//    private static ResourceBundle resourceBundle=ResourceBundle.getBundle("configs/"+System.getProperty("envType"));
+    private static ResourceBundle resourceBundle=ResourceBundle.getBundle("configs/"+System.getProperty("envType"));
 
     public static String getHost(){
         return resourceBundle.getString("host");

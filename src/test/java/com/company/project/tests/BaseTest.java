@@ -17,15 +17,13 @@ public class BaseTest {
     private static final Logger logger= LoggerFactory.getLogger("Base test ");
 
     /**
-     * This method will set the execution environment passed by the user to the system properties
+     * This block will set the execution environment to the system properties
      */
-    @BeforeTest
-    public void testSetUp(){
+    static {
         System.setProperty("envType",getTextFromFile("environment.txt"));
         logger.info("Provided environment- "+System.getProperty("envType"));
     }
-
-    private String getTextFromFile(String filename) {
+    private static String getTextFromFile(String filename) {
         String value = null;
         BufferedReader br;
         try {
